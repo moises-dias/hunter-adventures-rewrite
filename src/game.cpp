@@ -18,7 +18,12 @@ Game::Game(){
     setup_event_queue();
     start_timer();
 
-    player = std::make_unique<Player>();
+    // player = std::make_unique<Player>();
+    entityManager = std::make_unique<EntityManager>();
+
+
+    entityManager->addEntity(PLAYER);
+    entityManager->addEntity(ENEMY);
 
     main_game_loop();
 
@@ -92,7 +97,7 @@ void Game::main_game_loop() {
         }
         else if( event.type == ALLEGRO_EVENT_KEY_DOWN ) {
             auto direction_to_move = directions[event.keyboard.keycode];
-            player->update_position(direction_to_move);
+            // player->update_position(direction_to_move);
         }
 
         al_clear_to_color(al_map_rgb(255,255,255));
@@ -100,7 +105,8 @@ void Game::main_game_loop() {
         // al_draw_text(font, al_map_rgb(0,0,0), 7, 7, 0, "SCORE: dragon");
         // al_draw_text(font, al_map_rgb(255,255,255), 5, 5, 0, "SCORE: dragon");
         // al_draw_bitmap_region(sprite, 191 * (int)frame, current_frame_y, 191, 161, pos_x, pos_y, 0);
-        player->draw_sprite();
+        // player->draw_sprite();
+        entityManager->updateEntities();
         al_flip_display();
     }
 }
