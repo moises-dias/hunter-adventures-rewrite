@@ -6,3 +6,9 @@ int main (){
 
   return 0;
 }
+
+// include order:
+//  class header (if class.cpp)
+//  c++ imports
+//  allegro
+//  custom classes

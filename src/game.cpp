@@ -1,5 +1,7 @@
 #include "game.h"
 
+#include <vector>
+#include <map>
 #include <iostream>
 
 Game::Game(){
@@ -15,6 +17,8 @@ Game::Game(){
     init_timer();
     setup_event_queue();
     start_timer();
+
+    player = std::make_unique<Player>();
 
     main_game_loop();
 
@@ -72,35 +76,31 @@ void Game::main_game_loop() {
     int pos_x = 0, pos_y = 0;
     int current_frame_y = 161;
 
+    std::map<int, std::vector<int>> directions = {
+        {ALLEGRO_KEY_RIGHT, {20, 0}}, 
+        {ALLEGRO_KEY_LEFT, {-20, 0}}, 
+        {ALLEGRO_KEY_DOWN, {0, 20}}, 
+        {ALLEGRO_KEY_UP, {0, -20}}
+    };
+
     while(true){
         ALLEGRO_EVENT event;
         al_wait_for_event(event_queue, &event);
-        if( event.type == ALLEGRO_EVENT_DISPLAY_CLOSE ){
+        
+        if( event.type == ALLEGRO_EVENT_DISPLAY_CLOSE ) {
             break;
-        }else if( event.keyboard.keycode == ALLEGRO_KEY_RIGHT ){
-            current_frame_y = 161;
-            pos_x += 20;
-        }else if( event.keyboard.keycode == ALLEGRO_KEY_LEFT ){
-            current_frame_y = 161 * 3;
-            pos_x -= 20;
-        }else if( event.keyboard.keycode == ALLEGRO_KEY_DOWN ){
-            current_frame_y = 161 * 2;
-            pos_y += 20;
-        }else if( event.keyboard.keycode == ALLEGRO_KEY_UP ){
-            current_frame_y = 0;
-            pos_y -= 20;
         }
-
-        frame += 0.3f;
-        if( frame > 3){
-        frame -= 3;
+        else if( event.type == ALLEGRO_EVENT_KEY_DOWN ) {
+            auto direction_to_move = directions[event.keyboard.keycode];
+            player->update_position(direction_to_move);
         }
 
         al_clear_to_color(al_map_rgb(255,255,255));
         al_draw_bitmap(bg, 0, 0, 0);
-        al_draw_text(font, al_map_rgb(0,0,0), 7, 7, 0, "SCORE: dragon");
-        al_draw_text(font, al_map_rgb(255,255,255), 5, 5, 0, "SCORE: dragon");
-        al_draw_bitmap_region(sprite, 191 * (int)frame, current_frame_y, 191, 161, pos_x, pos_y, 0);
+        // al_draw_text(font, al_map_rgb(0,0,0), 7, 7, 0, "SCORE: dragon");
+        // al_draw_text(font, al_map_rgb(255,255,255), 5, 5, 0, "SCORE: dragon");
+        // al_draw_bitmap_region(sprite, 191 * (int)frame, current_frame_y, 191, 161, pos_x, pos_y, 0);
+        player->draw_sprite();
         al_flip_display();
     }
 }
