@@ -1,0 +1,7 @@
+CMakeCache.txt
+tests.out
+CTestTestfile.cmake
+cmake_install.cmake
+Makefile
+CMakeFiles/
+/src/main
