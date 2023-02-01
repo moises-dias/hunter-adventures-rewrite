@@ -22,8 +22,8 @@ Game::Game(){
     entityManager = std::make_unique<EntityManager>();
 
 
-    entityManager->addEntity(PLAYER);
-    entityManager->addEntity(ENEMY);
+    entityManager->createEntity(PLAYER);
+    entityManager->createEntity(ENEMY);
 
     main_game_loop();
 
@@ -47,8 +47,8 @@ void Game::init_allegro_dependencies() {
 }
 
 void Game::init_images() {
-    sprite = al_load_bitmap("./images/dragon.png");
-    bg = al_load_bitmap("./images/bg.png");
+    // sprite = al_load_bitmap("./data/images/dragon/dragon.png");
+    bg = al_load_bitmap("./data/images/bg.png");
 }
 
 void Game::init_display(const int window_width, const int window_height) {

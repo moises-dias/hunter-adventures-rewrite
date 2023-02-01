@@ -2,6 +2,7 @@
 
 
 //TODO: set tab as 4 spaces
+//TODO: after implement flyweight and factory, make sure that everything is being deleted
 int main (){
 
   Game g;

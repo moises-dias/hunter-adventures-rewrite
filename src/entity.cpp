@@ -1,14 +1,17 @@
 #include "entity.h"
 
+#include <memory>
 #include <iostream>
 
-Entity::Entity(int entity_type) {
+Entity::Entity(int entity_type, std::shared_ptr<EntityFlyweight> entityFlyweight) {
     std::cout << "initing entity" << "\n";
     this->entity_type = entity_type;
     x_position = 500 - 200 * entity_type;
     y_position = 500 - 200 * entity_type;
-    sprite_path = "./images/dragon.png";
-    sprite = al_load_bitmap("./images/dragon.png");
+
+    // sprite_path = "./data/images/dragon/dragon.png";
+    // sprite = al_load_bitmap(sprite_path.c_str());
+    sprite = *entityFlyweight->getImage(PLAYER_IMAGE);
 }
 
 Entity::~Entity() {

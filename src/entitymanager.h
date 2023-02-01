@@ -5,15 +5,19 @@
 #include <list>
 
 #include "entity.h"
+#include "entityfactory.h"
 
 class EntityManager {
     public:
         EntityManager();
         ~EntityManager();
-        void addEntity(int entity_type);
+        // TODO remove addEntity after implementing createEntity();
+        // void addEntity(int entity_type);
+        void createEntity(int entity_type);
         void updateEntities();
     private:
         std::list<std::unique_ptr<Entity>> entityList;
+        std::unique_ptr<EntityFactory> entityFactory; 
         
 };
 
