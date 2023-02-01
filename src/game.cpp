@@ -32,7 +32,6 @@ Game::Game(){
 Game::~Game() {
     std::cout << "finishing Game" << "\n";
     al_destroy_bitmap(bg);
-    al_destroy_bitmap(sprite);
     al_destroy_font(font);
     al_destroy_display(display);
     al_destroy_event_queue(event_queue);

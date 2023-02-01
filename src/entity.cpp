@@ -9,12 +9,12 @@ Entity::Entity(int entity_type, std::shared_ptr<EntityFlyweight> entityFlyweight
     x_position = 500 - 200 * entity_type;
     y_position = 500 - 200 * entity_type;
 
+    // TODO: loading the player image hardcoded, should load the correct image from the concrete entities
     sprite = *entityFlyweight->getImage(PLAYER_IMAGE);
 }
 
 Entity::~Entity() {
     std::cout << "finishing entity" << "\n";
-    al_destroy_bitmap(sprite);
 }
 
 void Entity::draw_sprite() {

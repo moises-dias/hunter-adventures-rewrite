@@ -24,7 +24,6 @@ class Game {
         void start_timer();
         void main_game_loop();
     private:
-        ALLEGRO_BITMAP* sprite;
         ALLEGRO_BITMAP* bg;
         ALLEGRO_DISPLAY* display;
         ALLEGRO_FONT* font;

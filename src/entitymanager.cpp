@@ -1,9 +1,13 @@
 #include "entitymanager.h"
 
+#include <iostream>
+
 EntityManager::EntityManager() {
+    std::cout << "initing EntityManager" << "\n";
     entityFactory = std::make_unique<EntityFactory>();
 }
 EntityManager::~EntityManager() {
+    std::cout << "finishing EntityManager" << "\n";
 
 }
 

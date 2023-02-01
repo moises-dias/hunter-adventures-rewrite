@@ -1,5 +1,7 @@
 #include "entityflyweight.h"
 
+#include <iostream>
+
 std::map<int, std::string> enumToPath = {
     {PLAYER_IMAGE, "./data/images/player/player.png"},
     {DRAGON_IMAGE, "./data/images/dragon/dragon.png"}
@@ -7,10 +9,14 @@ std::map<int, std::string> enumToPath = {
 
 
 EntityFlyweight::EntityFlyweight() {
-
+    std::cout << "initing EntityFlyweight" << "\n";
 }
 EntityFlyweight::~EntityFlyweight() {
-    // TODO: delete everything loaded (images and audios)
+    std::cout << "finishing EntityFlyweight" << "\n";
+    for (auto& [image_name, created_image]: createdImages) {
+        al_destroy_bitmap(*created_image);
+        std::cout << "calling al_destroy_bitmap" << "\n";
+    }
 }
 
 std::shared_ptr<ALLEGRO_BITMAP*> EntityFlyweight::getImage(int image_name) {
@@ -22,6 +28,7 @@ std::shared_ptr<ALLEGRO_BITMAP*> EntityFlyweight::getImage(int image_name) {
 }
 
 void EntityFlyweight::createImage(int image_name) {
+    std::cout << "calling al_load_bitmap" << "\n";
 
     std::string imagePath = enumToPath[image_name];
 
