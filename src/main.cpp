@@ -1,5 +1,6 @@
 #include "game.h"
 
+//TODO: put const in arguments that are const
 int main (){
 
     Game hunter_adventures;

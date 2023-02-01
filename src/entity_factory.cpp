@@ -12,6 +12,6 @@ EntityFactory::~EntityFactory() {
 }
 
 std::unique_ptr<Entity> EntityFactory::create_entity(int entity_type){
-    std::unique_ptr<Entity> newEntity = std::make_unique<Entity>(entity_type, entity_flyweight);
-    return std::move(newEntity);
+    std::unique_ptr<Entity> new_entity = std::make_unique<Entity>(entity_type, entity_flyweight);
+    return std::move(new_entity);
 }
