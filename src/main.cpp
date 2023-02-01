@@ -1,7 +1,5 @@
 #include "game.h"
 
-
-//TODO: after implement flyweight and factory, make sure that everything is being deleted
 int main (){
 
     Game hunter_adventures;

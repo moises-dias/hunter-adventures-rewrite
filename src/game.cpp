@@ -28,7 +28,6 @@ Game::Game(){
 
 }
 
-//TODO: BUG - game breaking here when closing window (deleting sprite that was not loaded)
 Game::~Game() {
     std::cout << "finishing Game" << "\n";
     al_destroy_bitmap(bg);
