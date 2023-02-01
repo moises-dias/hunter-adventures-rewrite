@@ -9,8 +9,6 @@ Entity::Entity(int entity_type, std::shared_ptr<EntityFlyweight> entityFlyweight
     x_position = 500 - 200 * entity_type;
     y_position = 500 - 200 * entity_type;
 
-    // sprite_path = "./data/images/dragon/dragon.png";
-    // sprite = al_load_bitmap(sprite_path.c_str());
     sprite = *entityFlyweight->getImage(PLAYER_IMAGE);
 }
 

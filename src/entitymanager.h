@@ -11,8 +11,6 @@ class EntityManager {
     public:
         EntityManager();
         ~EntityManager();
-        // TODO remove addEntity after implementing createEntity();
-        // void addEntity(int entity_type);
         void createEntity(int entity_type);
         void updateEntities();
     private:

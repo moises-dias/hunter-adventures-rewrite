@@ -9,7 +9,6 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/keyboard.h>
 
-// #include "player.h"
 #include "entitymanager.h"
 
 class Game {
@@ -31,7 +30,6 @@ class Game {
         ALLEGRO_FONT* font;
         ALLEGRO_TIMER* timer;
         ALLEGRO_EVENT_QUEUE* event_queue;
-        // std::unique_ptr<Player> player;
         std::unique_ptr<EntityManager> entityManager;
 
 };

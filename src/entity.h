@@ -16,7 +16,7 @@ class Entity {
         ~Entity();
         void draw_sprite();
         void update_position(std::vector<int>);
-        // void set_sprite(std::unique_ptr<EntityFactory>);
+
     private:
         int x_position;
         int y_position;

@@ -18,9 +18,7 @@ Game::Game(){
     setup_event_queue();
     start_timer();
 
-    // player = std::make_unique<Player>();
     entityManager = std::make_unique<EntityManager>();
-
 
     entityManager->createEntity(PLAYER);
     entityManager->createEntity(ENEMY);
@@ -29,6 +27,8 @@ Game::Game(){
 
 
 }
+
+//TODO: BUG - game breaking here when closing window (deleting sprite that was not loaded)
 Game::~Game() {
     std::cout << "finishing Game" << "\n";
     al_destroy_bitmap(bg);
@@ -47,7 +47,6 @@ void Game::init_allegro_dependencies() {
 }
 
 void Game::init_images() {
-    // sprite = al_load_bitmap("./data/images/dragon/dragon.png");
     bg = al_load_bitmap("./data/images/bg.png");
 }
 
@@ -81,6 +80,7 @@ void Game::main_game_loop() {
     int pos_x = 0, pos_y = 0;
     int current_frame_y = 161;
 
+    // TODO: create Coordinates class
     std::map<int, std::vector<int>> directions = {
         {ALLEGRO_KEY_RIGHT, {20, 0}}, 
         {ALLEGRO_KEY_LEFT, {-20, 0}}, 
@@ -97,15 +97,10 @@ void Game::main_game_loop() {
         }
         else if( event.type == ALLEGRO_EVENT_KEY_DOWN ) {
             auto direction_to_move = directions[event.keyboard.keycode];
-            // player->update_position(direction_to_move);
         }
 
         al_clear_to_color(al_map_rgb(255,255,255));
         al_draw_bitmap(bg, 0, 0, 0);
-        // al_draw_text(font, al_map_rgb(0,0,0), 7, 7, 0, "SCORE: dragon");
-        // al_draw_text(font, al_map_rgb(255,255,255), 5, 5, 0, "SCORE: dragon");
-        // al_draw_bitmap_region(sprite, 191 * (int)frame, current_frame_y, 191, 161, pos_x, pos_y, 0);
-        // player->draw_sprite();
         entityManager->updateEntities();
         al_flip_display();
     }
