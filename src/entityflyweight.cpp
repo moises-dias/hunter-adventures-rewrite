@@ -13,21 +13,19 @@ EntityFlyweight::~EntityFlyweight() {
     // TODO: delete everything loaded (images and audios)
 }
 
-std::shared_ptr<ALLEGRO_BITMAP*> EntityFlyweight::getImage(int entity_class) {
-    if (createdImages.count(entity_class) == 0) {
-        createImage(entity_class);
+std::shared_ptr<ALLEGRO_BITMAP*> EntityFlyweight::getImage(int image_name) {
+    if (createdImages.count(image_name) == 0) {
+        createImage(image_name);
     }
 
-    return createdImages[entity_class];
+    return createdImages[image_name];
 }
 
-void EntityFlyweight::createImage(int entity_class) {
+void EntityFlyweight::createImage(int image_name) {
 
-    std::shared_ptr<ALLEGRO_BITMAP*> newImage = std::make_shared<ALLEGRO_BITMAP*>(al_load_bitmap("imagePath"));
+    std::string imagePath = enumToPath[image_name];
 
-    std::string imagePath = enumToPath[entity_class];
+    std::shared_ptr<ALLEGRO_BITMAP*> newImage = std::make_shared<ALLEGRO_BITMAP*>(al_load_bitmap(imagePath.c_str()));
 
-    *newImage = al_load_bitmap(imagePath.c_str());
-
-    createdImages[entity_class] = newImage;
+    createdImages[image_name] = newImage;
 }

@@ -10,17 +10,15 @@
 
 enum FILES {PLAYER_IMAGE, DRAGON_IMAGE};
 
-//TODO: change entity_class variable name to image_name or something
 class EntityFlyweight {
     public:
         EntityFlyweight();
         ~EntityFlyweight();
-        void createImage(int entity_class);
-        std::shared_ptr<ALLEGRO_BITMAP*> getImage(int entity_class);
-        // std::shared_ptr<zzz> getAudio(int entity_class);
+        void createImage(int image_name);
+        std::shared_ptr<ALLEGRO_BITMAP*> getImage(int image_name);
+
     private:
         std::map<int, std::shared_ptr<ALLEGRO_BITMAP*>> createdImages;
-
 };
 
 #endif
