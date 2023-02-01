@@ -6,13 +6,13 @@
 
 #include <allegro5/allegro.h>
 
-#include "entityflyweight.h"
+#include "entity_flyweight.h"
 
 enum ENTITY_TYPE {PLAYER, ENEMY, PLAYER_PROJECTILE, ENEMY_PROJECTILE, PLATFORM};
 
 class Entity {
     public:
-        Entity(int entity_type, std::shared_ptr<EntityFlyweight> entityFlyweight);
+        Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight);
         ~Entity();
         void draw_sprite();
         void update_position(std::vector<int>);

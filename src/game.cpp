@@ -18,10 +18,10 @@ Game::Game(){
     setup_event_queue();
     start_timer();
 
-    entityManager = std::make_unique<EntityManager>();
+    entity_manager = std::make_unique<EntityManager>();
 
-    entityManager->createEntity(PLAYER);
-    entityManager->createEntity(ENEMY);
+    entity_manager->create_entity(PLAYER);
+    entity_manager->create_entity(ENEMY);
 
     main_game_loop();
 
@@ -100,7 +100,7 @@ void Game::main_game_loop() {
 
         al_clear_to_color(al_map_rgb(255,255,255));
         al_draw_bitmap(bg, 0, 0, 0);
-        entityManager->updateEntities();
+        entity_manager->update_entities();
         al_flip_display();
     }
 }

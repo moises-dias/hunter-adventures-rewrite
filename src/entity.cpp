@@ -3,14 +3,14 @@
 #include <memory>
 #include <iostream>
 
-Entity::Entity(int entity_type, std::shared_ptr<EntityFlyweight> entityFlyweight) {
+Entity::Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight) {
     std::cout << "initing entity" << "\n";
     this->entity_type = entity_type;
     x_position = 500 - 200 * entity_type;
     y_position = 500 - 200 * entity_type;
 
     // TODO: loading the player image hardcoded, should load the correct image from the concrete entities
-    sprite = *entityFlyweight->getImage(PLAYER_IMAGE);
+    sprite = *entity_flyweight->get_image(PLAYER_IMAGE);
 }
 
 Entity::~Entity() {

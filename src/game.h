@@ -9,7 +9,7 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/keyboard.h>
 
-#include "entitymanager.h"
+#include "entity_manager.h"
 
 class Game {
     public:
@@ -29,7 +29,7 @@ class Game {
         ALLEGRO_FONT* font;
         ALLEGRO_TIMER* timer;
         ALLEGRO_EVENT_QUEUE* event_queue;
-        std::unique_ptr<EntityManager> entityManager;
+        std::unique_ptr<EntityManager> entity_manager;
 
 };
 

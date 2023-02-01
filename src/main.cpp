@@ -4,7 +4,7 @@
 //TODO: after implement flyweight and factory, make sure that everything is being deleted
 int main (){
 
-    Game g;
+    Game hunter_adventures;
 
     return 0;
 }

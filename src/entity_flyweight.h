@@ -14,11 +14,11 @@ class EntityFlyweight {
     public:
         EntityFlyweight();
         ~EntityFlyweight();
-        void createImage(int image_name);
-        std::shared_ptr<ALLEGRO_BITMAP*> getImage(int image_name);
+        void create_image(int image_name);
+        std::shared_ptr<ALLEGRO_BITMAP*> get_image(int image_name);
 
     private:
-        std::map<int, std::shared_ptr<ALLEGRO_BITMAP*>> createdImages;
+        std::map<int, std::shared_ptr<ALLEGRO_BITMAP*>> created_images;
 };
 
 #endif
