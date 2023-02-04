@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include <algorithm>
 
 Game::Game(){
     std::cout << "initing Game" << "\n";
@@ -20,6 +21,7 @@ Game::Game(){
 
     entity_manager = std::make_unique<EntityManager>();
 
+    // TODO: create game state classes, creation of player and enemies will be on gameplay state
     entity_manager->create_entity(PLAYER);
     entity_manager->create_entity(ENEMY);
 
@@ -74,30 +76,25 @@ void Game::start_timer() {
 }
 
 void Game::main_game_loop() {
-    float frame = 0.f;
-    int pos_x = 0, pos_y = 0;
-    int current_frame_y = 161;
 
-    // TODO: create Coordinates class
-    std::map<int, std::vector<int>> directions = {
-        {ALLEGRO_KEY_RIGHT, {20, 0}}, 
-        {ALLEGRO_KEY_LEFT, {-20, 0}}, 
-        {ALLEGRO_KEY_DOWN, {0, 20}}, 
-        {ALLEGRO_KEY_UP, {0, -20}}
-    };
-
+    // TODO: create Coordinates class (cartesian coordinates, x and y)
     while(true){
+        // TODO create function related to event management
         ALLEGRO_EVENT event;
         al_wait_for_event(event_queue, &event);
         
         if( event.type == ALLEGRO_EVENT_DISPLAY_CLOSE ) {
             break;
         }
-        else if( event.type == ALLEGRO_EVENT_KEY_DOWN ) {
-            auto direction_to_move = directions[event.keyboard.keycode];
+        else if( event.type == ALLEGRO_EVENT_KEY_DOWN) {
+            bool command_key_pressed = std::find(COMMAND_KEYS.begin(), COMMAND_KEYS.end(), event.keyboard.keycode) != COMMAND_KEYS.end();
+            if(command_key_pressed) {
+                entity_manager->handle_command(event.keyboard.keycode);
+            }
         }
 
         al_clear_to_color(al_map_rgb(255,255,255));
+        // TODO: draw the background on what class? is this an entity?
         al_draw_bitmap(bg, 0, 0, 0);
         entity_manager->update_entities();
         al_flip_display();

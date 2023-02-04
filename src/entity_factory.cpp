@@ -11,7 +11,7 @@ EntityFactory::~EntityFactory() {
     std::cout << "finishing EntityFactory" << "\n";
 }
 
-std::unique_ptr<Entity> EntityFactory::create_entity(int entity_type){
-    std::unique_ptr<Entity> new_entity = std::make_unique<Entity>(entity_type, entity_flyweight);
+std::shared_ptr<Entity> EntityFactory::create_entity(int entity_type){
+    std::shared_ptr<Entity> new_entity = std::make_shared<Entity>(entity_type, entity_flyweight);
     return std::move(new_entity);
 }

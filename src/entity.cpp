@@ -37,3 +37,18 @@ void Entity::update_position(std::vector<int> coordinates) {
     x_position += coordinates[0];
     y_position += coordinates[1];
 }
+
+void Entity::handle_command(int command) {
+    if(command == ALLEGRO_KEY_RIGHT) {
+        x_position +=10;
+    }
+    else if (command == ALLEGRO_KEY_LEFT) {
+        x_position -= 10;
+    }
+    else if (command == ALLEGRO_KEY_UP) {
+        y_position -= 10;
+    }
+    else if (command == ALLEGRO_KEY_DOWN) {
+        y_position -= 10;
+    }
+}

@@ -13,10 +13,11 @@ class EntityManager {
         ~EntityManager();
         void create_entity(int entity_type);
         void update_entities();
+        void handle_command(int command);
     private:
-        std::list<std::unique_ptr<Entity>> entity_list;
+        std::list<std::shared_ptr<Entity>> entity_list;
+        std::shared_ptr<Entity> p_player;
         std::unique_ptr<EntityFactory> entity_factory; 
-        
 };
 
 #endif

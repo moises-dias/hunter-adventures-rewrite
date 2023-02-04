@@ -11,7 +11,7 @@ class EntityFactory {
     public:
         EntityFactory();
         ~EntityFactory();
-        std::unique_ptr<Entity> create_entity(int entity_type);
+        std::shared_ptr<Entity> create_entity(int entity_type);
     private:
         std::shared_ptr<EntityFlyweight> entity_flyweight;
         
