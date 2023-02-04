@@ -23,6 +23,8 @@ class Game {
         void setup_event_queue();
         void start_timer();
         void main_game_loop();
+        void handle_event();
+        void update_screen();
     private:
         ALLEGRO_BITMAP* bg;
         ALLEGRO_DISPLAY* display;
@@ -30,6 +32,7 @@ class Game {
         ALLEGRO_TIMER* timer;
         ALLEGRO_EVENT_QUEUE* event_queue;
         std::unique_ptr<EntityManager> entity_manager;
+        bool shutdown_game = false;
 
 };
 

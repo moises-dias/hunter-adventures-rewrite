@@ -75,28 +75,33 @@ void Game::start_timer() {
     al_start_timer(timer);
 }
 
+void Game::handle_event() {
+    ALLEGRO_EVENT event;
+    al_wait_for_event(event_queue, &event);
+    
+    if( event.type == ALLEGRO_EVENT_DISPLAY_CLOSE ) {
+        shutdown_game = true;
+    }
+    else if( event.type == ALLEGRO_EVENT_KEY_DOWN) {
+        bool command_key_pressed = std::find(COMMAND_KEYS.begin(), COMMAND_KEYS.end(), event.keyboard.keycode) != COMMAND_KEYS.end();
+        if(command_key_pressed) {
+            entity_manager->handle_command(event.keyboard.keycode);
+        }
+    }
+}
+
+void Game::update_screen() {
+    al_clear_to_color(al_map_rgb(255,255,255));
+    // TODO: draw the background on what class? is this an entity?
+    al_draw_bitmap(bg, 0, 0, 0);
+    entity_manager->update_entities();
+    al_flip_display();
+}
+
 void Game::main_game_loop() {
 
-    // TODO: create Coordinates class (cartesian coordinates, x and y)
-    while(true){
-        // TODO create function related to event management
-        ALLEGRO_EVENT event;
-        al_wait_for_event(event_queue, &event);
-        
-        if( event.type == ALLEGRO_EVENT_DISPLAY_CLOSE ) {
-            break;
-        }
-        else if( event.type == ALLEGRO_EVENT_KEY_DOWN) {
-            bool command_key_pressed = std::find(COMMAND_KEYS.begin(), COMMAND_KEYS.end(), event.keyboard.keycode) != COMMAND_KEYS.end();
-            if(command_key_pressed) {
-                entity_manager->handle_command(event.keyboard.keycode);
-            }
-        }
-
-        al_clear_to_color(al_map_rgb(255,255,255));
-        // TODO: draw the background on what class? is this an entity?
-        al_draw_bitmap(bg, 0, 0, 0);
-        entity_manager->update_entities();
-        al_flip_display();
+    while(!shutdown_game){
+        update_screen();
+        handle_event();
     }
 }
