@@ -23,7 +23,7 @@ void EntityManager::create_entity(int entity_type){
 
 void EntityManager::update_entities(){
     for(auto&& iterator_entity : entity_list) {
-        iterator_entity->draw_sprite();
+        iterator_entity->update();
     }
 }
 

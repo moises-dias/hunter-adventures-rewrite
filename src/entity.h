@@ -7,8 +7,9 @@
 #include <allegro5/allegro.h>
 
 #include "entity_flyweight.h"
+#include "coordinates.h"
 
-// TODO: where to store this vector?
+// TODO: where to store this vector? not in entity, enemies does not need to know it
 const std::vector<int> COMMAND_KEYS = {
     ALLEGRO_KEY_RIGHT, 
     ALLEGRO_KEY_LEFT, 
@@ -23,14 +24,17 @@ class Entity {
         Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight);
         ~Entity();
         void draw_sprite();
-        void update_position(std::vector<int>);
+        void update_movement();
+        void update();
         // TODO create player class, this method is related only to the player
         void handle_command(int command);
 
     private:
-        int x_position;
-        int y_position;
         int entity_type;
+
+        std::unique_ptr<Coordinates> position;
+        std::unique_ptr<Coordinates> velocity;
+        std::unique_ptr<Coordinates> acceleration;
 
         std::string sprite_path;
 

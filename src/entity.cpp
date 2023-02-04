@@ -6,11 +6,13 @@
 Entity::Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight) {
     std::cout << "initing entity" << "\n";
     this->entity_type = entity_type;
-    x_position = 500 - 200 * entity_type;
-    y_position = 500 - 200 * entity_type;
 
     // TODO: loading the player image hardcoded, should load the correct image from the concrete entities
     sprite = *entity_flyweight->get_image(PLAYER_IMAGE);
+
+    position = std::make_unique<Coordinates>(100, 100);
+    velocity = std::make_unique<Coordinates>(0, 0);
+    acceleration = std::make_unique<Coordinates>(0, 0);
 }
 
 Entity::~Entity() {
@@ -30,25 +32,36 @@ void Entity::draw_sprite() {
         b = 255;
     }
     auto color = al_map_rgba(r,g,b,255);
-    al_draw_tinted_bitmap_region(sprite, color, 0,0,191,161, x_position, y_position, 0);
+    al_draw_tinted_bitmap_region(sprite, color, 0,0,191,161, position->get_x(), position->get_y(), 0);
 }
 
-void Entity::update_position(std::vector<int> coordinates) {
-    x_position += coordinates[0];
-    y_position += coordinates[1];
-}
 
 void Entity::handle_command(int command) {
     if(command == ALLEGRO_KEY_RIGHT) {
-        x_position +=10;
+        acceleration->update_x(0.05);
     }
     else if (command == ALLEGRO_KEY_LEFT) {
-        x_position -= 10;
+        acceleration->update_x(-0.05);
     }
     else if (command == ALLEGRO_KEY_UP) {
-        y_position -= 10;
+        acceleration->update_y(-0.05);
     }
     else if (command == ALLEGRO_KEY_DOWN) {
-        y_position -= 10;
+        acceleration->update_y(0.05);
     }
+}
+
+void Entity::update_movement() {
+    *velocity += *acceleration;
+    *position += *velocity;
+    std::cout << "position ";
+    position->print_coordinates();
+    std::cout << "velocity ";
+    velocity->print_coordinates();
+    std::cout << "acceleration ";
+    acceleration->print_coordinates();
+}
+void Entity::update() {
+    update_movement();
+    draw_sprite();
 }
