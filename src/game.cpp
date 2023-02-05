@@ -22,6 +22,7 @@ Game::Game(){
     entity_manager = std::make_unique<EntityManager>();
 
     // TODO: create game state classes, creation of player and enemies will be on gameplay state
+    // TODO: improve the factory to return a subclass of entity and not an entity with an atribute with the class
     entity_manager->create_entity(PLAYER);
     entity_manager->create_entity(ENEMY);
 

@@ -27,6 +27,7 @@ std::shared_ptr<ALLEGRO_BITMAP*> EntityFlyweight::get_image(int image_name) {
     return created_images[image_name];
 }
 
+// TODO: change image_name to image_id, because its an integer and not a string
 void EntityFlyweight::create_image(int image_name) {
     std::cout << "calling al_load_bitmap" << "\n";
 

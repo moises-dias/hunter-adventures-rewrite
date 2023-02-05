@@ -21,6 +21,7 @@ enum ENTITY_TYPE {PLAYER, ENEMY, PLAYER_PROJECTILE, ENEMY_PROJECTILE, PLATFORM};
 
 class Entity {
     public:
+        // TODO reference to flyweight would be better than a shared_ptr?
         Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight);
         ~Entity();
         void draw_sprite();

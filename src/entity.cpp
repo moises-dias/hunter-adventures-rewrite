@@ -21,7 +21,8 @@ Entity::~Entity() {
 
 void Entity::draw_sprite() {
     // TODO: who should be responsible for drawing? the player? game? or another class?
-    // al_draw_bitmap_region(sprite, 0, 0, 191, 161, x_position, y_position, 0);
+    //      there is a lot of information related to drawing:
+    //      current frame, number os seconds in a frame etc
     int r = 0;
     int g = 0;
     int b = 0;
