@@ -3,12 +3,12 @@
 #include <iostream>
 
 EntityManager::EntityManager() {
-    std::cout << "initing EntityManager" << "\n";
+    std::cout << "EntityManager()" << "\n";
     entity_factory = std::make_unique<EntityFactory>();
 
 }
 EntityManager::~EntityManager() {
-    std::cout << "finishing EntityManager" << "\n";
+    std::cout << "~EntityManager()" << "\n";
 
 }
 

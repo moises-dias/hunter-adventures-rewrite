@@ -9,10 +9,10 @@ std::map<int, std::string> enum_to_path = {
 
 
 EntityFlyweight::EntityFlyweight() {
-    std::cout << "initing EntityFlyweight" << "\n";
+    std::cout << "EntityFlyweight()" << "\n";
 }
 EntityFlyweight::~EntityFlyweight() {
-    std::cout << "finishing EntityFlyweight" << "\n";
+    std::cout << "~EntityFlyweight()" << "\n";
     for (auto& [image_name, created_image]: created_images) {
         al_destroy_bitmap(*created_image);
         std::cout << "calling al_destroy_bitmap" << "\n";

@@ -1,7 +1,6 @@
 #include "game.h"
 
 //TODO: put const in arguments that are const
-// TODO: fix comments on constructors and destructors
 int main (){
 
     Game hunter_adventures;

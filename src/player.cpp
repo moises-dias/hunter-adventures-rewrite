@@ -3,14 +3,15 @@
 #include <iostream>
 
 Player::Player() {
-
+    std::cout << "Player()" << "\n";
 }
 
 Player::Player(std::shared_ptr<EntityFlyweight> entity_flyweight) {
-    std::cout << "initing entity" << "\n";
+    std::cout << "Player(entity_flyweight)" << "\n";
+
     this->entity_type = entity_type;
 
-    // TODO: loading the player image hardcoded, should load the correct image from the concrete entities
+    //TODO create methods for initing image and coordinates
     sprite = *entity_flyweight->get_image(PLAYER_IMAGE);
 
     position = std::make_unique<Coordinates>(100, 100);
@@ -19,5 +20,5 @@ Player::Player(std::shared_ptr<EntityFlyweight> entity_flyweight) {
 }
 
 Player::~Player() {
-    
+    std::cout << "~Player()" << "\n";
 }

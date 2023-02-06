@@ -6,7 +6,7 @@
 #include <algorithm>
 
 Game::Game(){
-    std::cout << "initing Game" << "\n";
+    std::cout << "Game()" << "\n";
 
     const int window_width = 1280;
     const int window_height = 720;
@@ -36,7 +36,7 @@ Game::Game(){
 }
 
 Game::~Game() {
-    std::cout << "finishing Game" << "\n";
+    std::cout << "~Game()" << "\n";
     al_destroy_bitmap(bg);
     al_destroy_font(font);
     al_destroy_display(display);

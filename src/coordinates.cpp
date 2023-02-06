@@ -3,16 +3,18 @@
 #include <iostream>
 
 Coordinates::Coordinates() {
-
+    std::cout << "Coordinates()" << "\n"; 
 }
 
 Coordinates::Coordinates(float x, float y) {
+    std::cout << "Coordinates(x, y)" << "\n"; 
     this->x = x;
     this->y = y;
 }
 
 
 Coordinates::~Coordinates() {
+    std::cout << "~Coordinates()" << "\n"; 
 
 }
 

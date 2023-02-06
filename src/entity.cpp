@@ -4,7 +4,7 @@
 #include <iostream>
 
 Entity::Entity() {
-    std::cout << "initing entity (empty constructor)" << "\n";
+    std::cout << "Entity()" << "\n";
 }
 
 // Entity::Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight) {
@@ -20,7 +20,7 @@ Entity::Entity() {
 // }
 
 Entity::~Entity() {
-    std::cout << "finishing entity" << "\n";
+    std::cout << "~Entity()" << "\n";
 }
 
 void Entity::draw_sprite() {
