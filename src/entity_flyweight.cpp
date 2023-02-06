@@ -5,7 +5,8 @@
 std::map<int, std::string> enum_to_path = {
     {PLAYER_IMAGE, "./data/images/player/player.png"},
     {DRAGON_IMAGE, "./data/images/dragon/dragon.png"},
-    {SLIME_IMAGE, "./data/images/slime/slime.png"}
+    {SLIME_IMAGE, "./data/images/slime/slime.png"},
+    {FIRE_BALL_IMAGE, "./data/images/fire_ball/fire_ball.png"}
 };
 
 
