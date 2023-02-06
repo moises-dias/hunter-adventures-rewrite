@@ -3,17 +3,21 @@
 #include <memory>
 #include <iostream>
 
-Entity::Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight) {
-    std::cout << "initing entity" << "\n";
-    this->entity_type = entity_type;
-
-    // TODO: loading the player image hardcoded, should load the correct image from the concrete entities
-    sprite = *entity_flyweight->get_image(PLAYER_IMAGE);
-
-    position = std::make_unique<Coordinates>(100, 100);
-    velocity = std::make_unique<Coordinates>(0, 0);
-    acceleration = std::make_unique<Coordinates>(0, 0);
+Entity::Entity() {
+    std::cout << "initing entity (empty constructor)" << "\n";
 }
+
+// Entity::Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight) {
+//     std::cout << "initing entity" << "\n";
+//     this->entity_type = entity_type;
+
+//     // TODO: loading the player image hardcoded, should load the correct image from the concrete entities
+//     sprite = *entity_flyweight->get_image(PLAYER_IMAGE);
+
+//     position = std::make_unique<Coordinates>(100, 100);
+//     velocity = std::make_unique<Coordinates>(0, 0);
+//     acceleration = std::make_unique<Coordinates>(0, 0);
+// }
 
 Entity::~Entity() {
     std::cout << "finishing entity" << "\n";
@@ -55,12 +59,12 @@ void Entity::handle_command(int command) {
 void Entity::update_movement() {
     *velocity += *acceleration;
     *position += *velocity;
-    std::cout << "position ";
-    position->print_coordinates();
-    std::cout << "velocity ";
-    velocity->print_coordinates();
-    std::cout << "acceleration ";
-    acceleration->print_coordinates();
+    // std::cout << "position ";
+    // position->print_coordinates();
+    // std::cout << "velocity ";
+    // velocity->print_coordinates();
+    // std::cout << "acceleration ";
+    // acceleration->print_coordinates();
 }
 void Entity::update() {
     update_movement();

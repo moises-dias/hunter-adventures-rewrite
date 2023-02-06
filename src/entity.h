@@ -1,3 +1,4 @@
+// TODO: check that all headers have guard clauses
 #ifndef ENTITY_H
 #define ENTITY_H
 
@@ -17,12 +18,16 @@ const std::vector<int> COMMAND_KEYS = {
     ALLEGRO_KEY_DOWN
 };
 
-enum ENTITY_TYPE {PLAYER, ENEMY, PLAYER_PROJECTILE, ENEMY_PROJECTILE, PLATFORM};
+// TODO: make sure that type and class are not being mixed up
+enum ENTITY_CLASS {PLAYER, ENEMY, PLAYER_PROJECTILE, ENEMY_PROJECTILE, PLATFORM};
+enum ENTITY_RACE {SLIME};
 
+// TODO: turn entity into a interface
 class Entity {
     public:
         // TODO reference to flyweight would be better than a shared_ptr?
-        Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight);
+        Entity();
+        // Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight);
         ~Entity();
         void draw_sprite();
         void update_movement();
@@ -30,7 +35,8 @@ class Entity {
         // TODO create player class, this method is related only to the player
         void handle_command(int command);
 
-    private:
+    // TODO: check if all variables should be protected or some should be private
+    protected:
         int entity_type;
 
         std::unique_ptr<Coordinates> position;
