@@ -19,10 +19,8 @@ class EntityManager {
         void create_player();
         void create_enemy(int entity_type);
     private:
-        // std::list<std::shared_ptr<Entity>> entity_list;
         std::list<std::shared_ptr<Player>> player_list;
         std::list<std::shared_ptr<Enemy>> enemy_list;
-        // std::shared_ptr<Player> p_player;
         std::unique_ptr<EntityFactory> entity_factory; 
 };
 

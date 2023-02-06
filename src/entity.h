@@ -36,15 +36,9 @@ class Entity {
 
     // TODO: check if all variables should be protected or some should be private
     protected:
-
-        // TODO: useless variable?
-        int entity_type;
-
         std::unique_ptr<Coordinates> position;
         std::unique_ptr<Coordinates> velocity;
         std::unique_ptr<Coordinates> acceleration;
-
-        // std::string sprite_path;
 
         ALLEGRO_BITMAP* sprite;
 };

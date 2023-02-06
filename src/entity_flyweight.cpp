@@ -15,7 +15,7 @@ EntityFlyweight::~EntityFlyweight() {
     std::cout << "~EntityFlyweight()" << "\n";
     for (auto& [image_name, created_image]: created_images) {
         al_destroy_bitmap(*created_image);
-        std::cout << "calling al_destroy_bitmap" << "\n";
+        std::cout << "calling al_DESTROY_bitmap" << "\n";
     }
 }
 
@@ -29,7 +29,7 @@ std::shared_ptr<ALLEGRO_BITMAP*> EntityFlyweight::get_image(int image_name) {
 
 // TODO: change image_name to image_id, because its an integer and not a string
 void EntityFlyweight::create_image(int image_name) {
-    std::cout << "calling al_load_bitmap" << "\n";
+    std::cout << "calling al_LOAD_bitmap" << "\n";
 
     std::string image_path = enum_to_path[image_name];
 
