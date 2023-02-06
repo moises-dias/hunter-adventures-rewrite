@@ -45,3 +45,9 @@ void Entity::update() {
     update_movement();
     draw_sprite();
 }
+
+void Entity::init_position() {
+    position = std::make_unique<Coordinates>(100, 100);
+    velocity = std::make_unique<Coordinates>(0, 0);
+    acceleration = std::make_unique<Coordinates>(0, 0);
+}

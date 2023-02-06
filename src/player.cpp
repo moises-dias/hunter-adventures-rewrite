@@ -12,9 +12,7 @@ Player::Player(std::shared_ptr<EntityFlyweight> entity_flyweight) {
     //TODO create methods for initing image and coordinates
     sprite = *entity_flyweight->get_image(PLAYER_IMAGE);
 
-    position = std::make_unique<Coordinates>(100, 100);
-    velocity = std::make_unique<Coordinates>(0, 0);
-    acceleration = std::make_unique<Coordinates>(0, 0);
+    init_position();
 }
 
 Player::~Player() {
