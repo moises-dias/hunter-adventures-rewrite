@@ -6,6 +6,7 @@
 class FireBall : public Projectile {
     public:
         FireBall();
+        FireBall(std::shared_ptr<EntityFlyweight> entity_flyweight);
         ~FireBall();
 };
 

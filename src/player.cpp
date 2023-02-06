@@ -33,4 +33,7 @@ void Player::handle_command(int command) {
     else if (command == ALLEGRO_KEY_DOWN) {
         acceleration->update_y(0.05);
     }
+    else if (command == ALLEGRO_KEY_P) {
+        this->projectile_to_create = FIRE_BALL;
+    }
 }
