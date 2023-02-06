@@ -24,9 +24,7 @@ enum ENTITY_RACE {SLIME};
 // TODO: turn entity into a interface
 class Entity {
     public:
-        // TODO reference to flyweight would be better than a shared_ptr?
         Entity();
-        // Entity(int entity_type, std::shared_ptr<EntityFlyweight> entity_flyweight);
         ~Entity();
         void draw_sprite();
         void update_movement();

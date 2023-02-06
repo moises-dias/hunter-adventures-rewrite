@@ -6,6 +6,7 @@
 class Player : public Entity {
     public:
         Player();
+        // TODO reference to flyweight would be better than a shared_ptr?
         Player(std::shared_ptr<EntityFlyweight> entity_flyweight);
         ~Player();
         void handle_command(int command);

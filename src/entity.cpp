@@ -16,9 +16,7 @@ void Entity::draw_sprite() {
     //      there is a lot of information related to drawing:
     //      current frame, number os seconds in a frame etc
 
-    // TODO: remove this color used on debug at the first steps of the project
-    auto color = al_map_rgba(255, 255, 255, 255);
-    al_draw_tinted_bitmap_region(sprite, color, 0,0,191,161, position->get_x(), position->get_y(), 0);
+    al_draw_bitmap_region(sprite, 0,0,191,161, position->get_x(), position->get_y(), 0);
 }
 
 void Entity::update_movement() {

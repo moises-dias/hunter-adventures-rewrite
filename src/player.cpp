@@ -20,6 +20,7 @@ Player::~Player() {
 }
 
 void Player::handle_command(int command) {
+    // TODO think of a better structure to this key handle
     if(command == ALLEGRO_KEY_RIGHT) {
         acceleration->update_x(0.05);
     }
