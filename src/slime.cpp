@@ -11,7 +11,6 @@ Slime::Slime(std::shared_ptr<EntityFlyweight> entity_flyweight) {
     
     sprite = *entity_flyweight->get_image(DRAGON_IMAGE);
 
-    // TODO: check what should be default of entity class
     init_position();
 }
 

@@ -17,7 +17,6 @@ const std::vector<int> COMMAND_KEYS = {
     ALLEGRO_KEY_DOWN
 };
 
-// TODO: make sure that type and class are not being mixed up
 enum ENTITY_CLASS {PLAYER, ENEMY, PLAYER_PROJECTILE, ENEMY_PROJECTILE, PLATFORM};
 enum ENTITY_RACE {SLIME};
 
@@ -31,7 +30,6 @@ class Entity {
         void update();
         void init_position();
 
-    // TODO: check if all variables should be protected or some should be private
     protected:
         std::unique_ptr<Coordinates> position;
         std::unique_ptr<Coordinates> velocity;

@@ -13,7 +13,6 @@ class EntityManager {
     public:
         EntityManager();
         ~EntityManager();
-        // void create_entity(int entity_type);
         void update_entities();
         void handle_command(int command);
         void create_player();

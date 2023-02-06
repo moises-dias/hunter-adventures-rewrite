@@ -1,6 +1,7 @@
 #include "game.h"
 
 //TODO: put const in arguments that are const
+//TODO BEFORE MERGE create tests
 int main (){
 
     Game hunter_adventures;

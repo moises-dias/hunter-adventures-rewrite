@@ -6,7 +6,6 @@ class Coordinates {
         Coordinates();
         Coordinates(float x, float y);
         ~Coordinates();
-        // TODO check if all these methods are necessary
         void print_coordinates();
         float get_x();
         float get_y();
