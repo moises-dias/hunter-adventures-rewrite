@@ -3,20 +3,23 @@
 
 #include <memory>
 #include <list>
+#include <functional>
 
 #include "entity_flyweight.h"
 #include "enemy.h"
 #include "player.h"
 #include "slime.h"
+#include "dragon.h"
 
 class EntityFactory {
     public:
         EntityFactory();
         ~EntityFactory();
         void populate_player(std::list<std::shared_ptr<Player>>& player_list);
-        void populate_enemy(std::list<std::shared_ptr<Enemy>>& enemy_list, int entity_type);
+        void populate_enemy(std::list<std::shared_ptr<Enemy>>& enemy_list, int entity_race);
     private:
         std::shared_ptr<EntityFlyweight> entity_flyweight;
+        std::map<int, std::function<std::shared_ptr<Enemy>(std::shared_ptr<EntityFlyweight>&)>> race_to_enemy;
         
 };
 

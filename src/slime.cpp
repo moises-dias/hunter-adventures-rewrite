@@ -9,7 +9,7 @@ Slime::Slime() {
 Slime::Slime(std::shared_ptr<EntityFlyweight> entity_flyweight) {
     std::cout << "Slime(entity_flyweight)" << "\n";
     
-    sprite = *entity_flyweight->get_image(DRAGON_IMAGE);
+    sprite = *entity_flyweight->get_image(SLIME_IMAGE);
 
     init_position();
 }

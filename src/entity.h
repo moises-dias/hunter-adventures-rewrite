@@ -18,7 +18,7 @@ const std::vector<int> COMMAND_KEYS = {
 };
 
 enum ENTITY_CLASS {PLAYER, ENEMY, PLAYER_PROJECTILE, ENEMY_PROJECTILE, PLATFORM};
-enum ENTITY_RACE {SLIME};
+enum ENTITY_RACE {SLIME, DRAGON};
 
 // TODO: turn entity into a interface
 class Entity {

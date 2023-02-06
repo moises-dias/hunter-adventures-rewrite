@@ -8,7 +8,7 @@
 
 #include <allegro5/allegro.h>
 
-enum FILES {PLAYER_IMAGE, DRAGON_IMAGE};
+enum FILES {PLAYER_IMAGE, DRAGON_IMAGE, SLIME_IMAGE};
 
 class EntityFlyweight {
     public:

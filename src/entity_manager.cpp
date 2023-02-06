@@ -32,6 +32,6 @@ void EntityManager::create_player() {
     entity_factory->populate_player(player_list);
 }
 
-void EntityManager::create_enemy(int entity_type) {
-    entity_factory->populate_enemy(enemy_list, entity_type);
+void EntityManager::create_enemy(int entity_race) {
+    entity_factory->populate_enemy(enemy_list, entity_race);
 }

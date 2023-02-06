@@ -25,6 +25,8 @@ Game::Game(){
 
     entity_manager->create_player();
     entity_manager->create_enemy(SLIME);
+    entity_manager->create_enemy(DRAGON);
+    entity_manager->create_enemy(DRAGON);
 
     main_game_loop();
 
