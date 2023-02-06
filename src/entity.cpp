@@ -21,22 +21,6 @@ void Entity::draw_sprite() {
     al_draw_tinted_bitmap_region(sprite, color, 0,0,191,161, position->get_x(), position->get_y(), 0);
 }
 
-
-void Entity::handle_command(int command) {
-    if(command == ALLEGRO_KEY_RIGHT) {
-        acceleration->update_x(0.05);
-    }
-    else if (command == ALLEGRO_KEY_LEFT) {
-        acceleration->update_x(-0.05);
-    }
-    else if (command == ALLEGRO_KEY_UP) {
-        acceleration->update_y(-0.05);
-    }
-    else if (command == ALLEGRO_KEY_DOWN) {
-        acceleration->update_y(0.05);
-    }
-}
-
 void Entity::update_movement() {
     *velocity += *acceleration;
     *position += *velocity;

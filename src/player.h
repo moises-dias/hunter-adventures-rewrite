@@ -8,6 +8,7 @@ class Player : public Entity {
         Player();
         Player(std::shared_ptr<EntityFlyweight> entity_flyweight);
         ~Player();
+        void handle_command(int command);
     private:
 };
 

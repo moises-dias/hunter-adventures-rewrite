@@ -18,3 +18,18 @@ Player::Player(std::shared_ptr<EntityFlyweight> entity_flyweight) {
 Player::~Player() {
     std::cout << "~Player()" << "\n";
 }
+
+void Player::handle_command(int command) {
+    if(command == ALLEGRO_KEY_RIGHT) {
+        acceleration->update_x(0.05);
+    }
+    else if (command == ALLEGRO_KEY_LEFT) {
+        acceleration->update_x(-0.05);
+    }
+    else if (command == ALLEGRO_KEY_UP) {
+        acceleration->update_y(-0.05);
+    }
+    else if (command == ALLEGRO_KEY_DOWN) {
+        acceleration->update_y(0.05);
+    }
+}

@@ -31,8 +31,6 @@ class Entity {
         void draw_sprite();
         void update_movement();
         void update();
-        // TODO create player class, this method is related only to the player
-        void handle_command(int command);
         void init_position();
 
     // TODO: check if all variables should be protected or some should be private
