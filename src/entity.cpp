@@ -18,6 +18,8 @@ void Entity::draw_sprite() {
     //      there is a lot of information related to drawing:
     //      current frame, number os seconds in a frame etc
 
+
+    // TODO: update hardcoded 191 and 161 values from initial project example
     al_draw_bitmap_region(sprite, 0,0,191,161, position->get_x(), position->get_y(), 0);
 }
 
