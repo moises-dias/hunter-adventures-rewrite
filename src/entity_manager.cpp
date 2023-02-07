@@ -15,54 +15,42 @@ EntityManager::~EntityManager() {
 void EntityManager::update_entity(std::shared_ptr<Entity> entity) {
     entity->update();
     if (entity->get_projectile_to_create() != -1) {
-    create_projectile(entity->get_projectile_to_create(), entity->get_x(), entity->get_y());
+    create_entity(entity->get_projectile_to_create(), entity->get_x(), entity->get_y());
         entity->set_projectile_to_create(-1);
     }
 }
 
 void EntityManager::update_entities(){
-    for(auto&& i_player : player_list) {
-        update_entity(i_player);
-    }
-
-    for(auto&& i_enemy : enemy_list) {
-        update_entity(i_enemy);
-    }
-
-    for(auto&& i_projectile : projectile_list) {
-        update_entity(i_projectile);
+    for(auto&& i_entity : entity_list) {
+        update_entity(i_entity);
     }
 }
 
+bool EntityManager::allow_collision(int first_entity_class, int second_entity_class) {
+    if (
+        (first_entity_class == second_entity_class) ||
+        (first_entity_class == PLAYER && second_entity_class == PLAYER_PROJECTILE) ||
+        (first_entity_class == PLAYER_PROJECTILE && second_entity_class == PLAYER) ||
+        (first_entity_class == ENEMY && second_entity_class == ENEMY_PROJECTILE) ||
+        (first_entity_class == ENEMY_PROJECTILE && second_entity_class == ENEMY)
+    ) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
 
 void EntityManager::collide_entities(){
     // TODO consider if one list of entities would be enough, as i cant cast list<X> to list<Y>
-    for(auto&& i_player : player_list) {
-        for(auto&& i_enemy : enemy_list) {
-            if (bounding_box_collide(i_player->get_bounding_box(), i_enemy->get_bounding_box())) {
-                std::cout << "collide PLAYER -- ENEMY" << "\n";
-            }
-        }
-    }
 
-    for(auto&& i_player : player_list) {
-        for(auto&& i_projectile : projectile_list) {
-            if (i_projectile->get_entity_class() == PLAYER_PROJECTILE) {
+    for (auto i_first_entity = entity_list.begin(); i_first_entity != entity_list.end(); ++i_first_entity) {
+        for (auto i_second_entity = std::next(i_first_entity, 1); i_second_entity != entity_list.end(); ++i_second_entity) {
+            if (!allow_collision((*i_first_entity)->get_entity_class(), (*i_second_entity)->get_entity_class())) {
                 continue;
             }
-            if (bounding_box_collide(i_player->get_bounding_box(), i_projectile->get_bounding_box())) {
-                std::cout << "collide PLAYER -- ENEMY_PROJECTILE" << "\n";
-            }
-        }
-    }
-
-    for(auto&& i_enemy : enemy_list) {
-        for(auto&& i_projectile : projectile_list) {
-            if (i_projectile->get_entity_class() == ENEMY_PROJECTILE) {
-                continue;
-            }
-            if (bounding_box_collide(i_enemy->get_bounding_box(), i_projectile->get_bounding_box())) {
-                std::cout << "collide ENEMY -- PLAYER_PROJECTILE" << "\n";
+            if (bounding_box_collide((*i_first_entity)->get_bounding_box(), (*i_second_entity)->get_bounding_box())) {
+                std::cout << "collide" << "\n";
             }
         }
     }
@@ -109,22 +97,15 @@ bool EntityManager::bounding_box_collide_vertical(std::shared_ptr<BoundingBox> f
 }
 
 void EntityManager::handle_command(int command){
-    for(auto&& i_player : player_list) {
-        i_player->handle_command(command);
+    for(auto&& i_entity : entity_list) {
+        if (i_entity->get_entity_class() == PLAYER) {
+            auto i_player = std::static_pointer_cast<Player> (i_entity);
+            i_player->handle_command(command);
+        }
     }
 }
 
-void EntityManager::create_player(int x_position, int y_position) {
-    entity_factory->populate_player(player_list);
-    player_list.back()->init_position(x_position, y_position);
-}
-
-void EntityManager::create_enemy(int entity_race, int x_position, int y_position) {
-    entity_factory->populate_enemy(enemy_list, entity_race);
-    enemy_list.back()->init_position(x_position, y_position);
-}
-
-void EntityManager::create_projectile(int entity_race, int x_position, int y_position) {
-    entity_factory->populate_projectile(projectile_list, entity_race);
-    projectile_list.back()->init_position(x_position, y_position);
+void EntityManager::create_entity(int entity_race, int x_position, int y_position) {
+    entity_factory->populate_entity(entity_list, entity_race);
+    entity_list.back()->init_position(x_position, y_position);
 }

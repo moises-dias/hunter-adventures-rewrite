@@ -23,10 +23,10 @@ Game::Game(){
 
     // TODO: create game state classes, creation of player and enemies will be on gameplay state
 
-    entity_manager->create_player(0, 0);
-    entity_manager->create_enemy(SLIME, 400, 0);
-    entity_manager->create_enemy(DRAGON, 0, 600);
-    entity_manager->create_enemy(DRAGON, 400, 600);
+    entity_manager->create_entity(WARRIOR, 0, 0);
+    entity_manager->create_entity(SLIME, 400, 0);
+    entity_manager->create_entity(DRAGON, 0, 600);
+    entity_manager->create_entity(DRAGON, 400, 600);
 
     main_game_loop();
 
