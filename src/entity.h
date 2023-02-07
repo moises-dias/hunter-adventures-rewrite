@@ -31,6 +31,7 @@ class Entity {
         void update_movement();
         void update();
         void init_position();
+        void init_position(float x_position, float y_position);
         int get_projectile_to_create();
         void set_projectile_to_create(int projectile_to_create);
 

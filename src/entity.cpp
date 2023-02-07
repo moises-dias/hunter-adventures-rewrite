@@ -36,6 +36,12 @@ void Entity::init_position() {
     acceleration = std::make_unique<Coordinates>(0, 0);
 }
 
+void Entity::init_position(float x_position, float y_position) {
+    position = std::make_unique<Coordinates>(x_position, y_position);
+    velocity = std::make_unique<Coordinates>(0, 0);
+    acceleration = std::make_unique<Coordinates>(0, 0);
+}
+
 void Entity::set_projectile_to_create(int projectile_to_create) {
     this->projectile_to_create = projectile_to_create;
 }
