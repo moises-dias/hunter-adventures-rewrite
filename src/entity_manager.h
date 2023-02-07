@@ -21,6 +21,9 @@ class EntityManager {
         void create_enemy(int entity_race, int x_position, int y_position);
         void create_projectile(int entity_race, int x_position, int y_position);
         bool bounding_box_collide(std::shared_ptr<BoundingBox> first_box, std::shared_ptr<BoundingBox> second_box);
+        bool bounding_box_collide_horizontal(std::shared_ptr<BoundingBox> first_box, std::shared_ptr<BoundingBox> second_box);
+        bool bounding_box_collide_vertical(std::shared_ptr<BoundingBox> first_box, std::shared_ptr<BoundingBox> second_box);
+        void update_entity(std::shared_ptr<Entity> entity);
     private:
         std::list<std::shared_ptr<Player>> player_list;
         std::list<std::shared_ptr<Projectile>> projectile_list;

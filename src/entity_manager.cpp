@@ -12,29 +12,25 @@ EntityManager::~EntityManager() {
 
 }
 
+void EntityManager::update_entity(std::shared_ptr<Entity> entity) {
+    entity->update();
+    if (entity->get_projectile_to_create() != -1) {
+    create_projectile(entity->get_projectile_to_create(), entity->get_x(), entity->get_y());
+        entity->set_projectile_to_create(-1);
+    }
+}
+
 void EntityManager::update_entities(){
     for(auto&& i_player : player_list) {
-        i_player->update();
-        if (i_player->get_projectile_to_create() != -1) {
-        create_projectile(i_player->get_projectile_to_create(), i_player->get_x(), i_player->get_y());
-            i_player->set_projectile_to_create(-1);
-        }
+        update_entity(i_player);
     }
 
     for(auto&& i_enemy : enemy_list) {
-        i_enemy->update();
-        if (i_enemy->get_projectile_to_create() != -1) {
-        create_projectile(i_enemy->get_projectile_to_create(), i_enemy->get_x(), i_enemy->get_y());
-            i_enemy->set_projectile_to_create(-1);
-        }
+        update_entity(i_enemy);
     }
 
     for(auto&& i_projectile : projectile_list) {
-        i_projectile->update();
-        if (i_projectile->get_projectile_to_create() != -1) {
-        create_projectile(i_projectile->get_projectile_to_create(), i_projectile->get_x(), i_projectile->get_y());
-            i_projectile->set_projectile_to_create(-1);
-        }
+        update_entity(i_projectile);
     }
 }
 
@@ -49,20 +45,16 @@ void EntityManager::collide_entities(){
 }
 
 bool EntityManager::bounding_box_collide(std::shared_ptr<BoundingBox> first_box, std::shared_ptr<BoundingBox> second_box) {
-    // TODO break into two functinos vertical and horizontal
-    std::shared_ptr<BoundingBox> left_box;
-    std::shared_ptr<BoundingBox> right_box;
+
+    bool collide_vertical = bounding_box_collide_vertical(first_box, second_box);;
+    bool collide_horizontal = bounding_box_collide_horizontal(first_box, second_box);
+
+    return collide_vertical && collide_horizontal;
+}
+
+bool EntityManager::bounding_box_collide_horizontal(std::shared_ptr<BoundingBox> first_box, std::shared_ptr<BoundingBox> second_box) {
     std::shared_ptr<BoundingBox> upper_box;
     std::shared_ptr<BoundingBox> lower_box;
-
-    if (first_box->get_x() < second_box->get_x()) {
-        left_box = first_box;
-        right_box = second_box;
-    }
-    else {
-        left_box = second_box;
-        right_box = first_box;
-    }
 
     if (first_box->get_y() < second_box->get_y()) {
         upper_box = first_box;
@@ -73,11 +65,23 @@ bool EntityManager::bounding_box_collide(std::shared_ptr<BoundingBox> first_box,
         lower_box = first_box;
     }
 
-    bool collide_vertical = (right_box->get_x() + right_box->get_width() - left_box->get_x() < right_box->get_width() + left_box->get_width());
+    return (lower_box->get_y() + lower_box->get_height() - upper_box->get_y() < lower_box->get_height() + upper_box->get_height());
+}
 
-    bool collide_horizontal = (lower_box->get_y() + lower_box->get_height() - upper_box->get_y() < lower_box->get_height() + upper_box->get_height());
+bool EntityManager::bounding_box_collide_vertical(std::shared_ptr<BoundingBox> first_box, std::shared_ptr<BoundingBox> second_box) {
+    std::shared_ptr<BoundingBox> left_box;
+    std::shared_ptr<BoundingBox> right_box;
 
-    return collide_vertical && collide_horizontal;
+    if (first_box->get_x() < second_box->get_x()) {
+        left_box = first_box;
+        right_box = second_box;
+    }
+    else {
+        left_box = second_box;
+        right_box = first_box;
+    }
+
+    return (right_box->get_x() + right_box->get_width() - left_box->get_x() < right_box->get_width() + left_box->get_width());
 }
 
 void EntityManager::handle_command(int command){
