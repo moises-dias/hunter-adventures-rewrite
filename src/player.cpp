@@ -12,6 +12,8 @@ Player::Player(std::shared_ptr<EntityFlyweight> entity_flyweight) {
     //TODO create methods for initing image and coordinates
     sprite = *entity_flyweight->get_image(PLAYER_IMAGE);
 
+    entity_class = PLAYER;
+    entity_race = WARRIOR;
 }
 
 Player::~Player() {

@@ -71,6 +71,10 @@ float Entity::get_y() {
     return position->get_y();
 }
 
+int Entity::get_entity_class() {
+    return entity_class;
+}
+
 std::shared_ptr<BoundingBox> Entity::get_bounding_box() {
     return this->bounding_box;
 }

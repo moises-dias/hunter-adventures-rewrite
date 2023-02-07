@@ -11,6 +11,9 @@ FireBall::FireBall(std::shared_ptr<EntityFlyweight> entity_flyweight) {
     
     sprite = *entity_flyweight->get_image(FIRE_BALL_IMAGE);
 
+    entity_class = PLAYER_PROJECTILE;
+    entity_race = FIRE_BALL;
+
 }
 
 FireBall::~FireBall() {

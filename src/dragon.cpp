@@ -11,6 +11,8 @@ Dragon::Dragon(std::shared_ptr<EntityFlyweight> entity_flyweight) {
     
     sprite = *entity_flyweight->get_image(DRAGON_IMAGE);
 
+    entity_class = ENEMY;
+    entity_race = DRAGON;
 }
 
 Dragon::~Dragon() {

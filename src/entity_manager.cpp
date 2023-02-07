@@ -34,14 +34,38 @@ void EntityManager::update_entities(){
     }
 }
 
+
 void EntityManager::collide_entities(){
+    // TODO consider if one list of entities would be enough, as i cant cast list<X> to list<Y>
     for(auto&& i_player : player_list) {
         for(auto&& i_enemy : enemy_list) {
             if (bounding_box_collide(i_player->get_bounding_box(), i_enemy->get_bounding_box())) {
-                std::cout << "collide" << "\n";
+                std::cout << "collide PLAYER -- ENEMY" << "\n";
             }
         }
-    }   
+    }
+
+    for(auto&& i_player : player_list) {
+        for(auto&& i_projectile : projectile_list) {
+            if (i_projectile->get_entity_class() == PLAYER_PROJECTILE) {
+                continue;
+            }
+            if (bounding_box_collide(i_player->get_bounding_box(), i_projectile->get_bounding_box())) {
+                std::cout << "collide PLAYER -- ENEMY_PROJECTILE" << "\n";
+            }
+        }
+    }
+
+    for(auto&& i_enemy : enemy_list) {
+        for(auto&& i_projectile : projectile_list) {
+            if (i_projectile->get_entity_class() == ENEMY_PROJECTILE) {
+                continue;
+            }
+            if (bounding_box_collide(i_enemy->get_bounding_box(), i_projectile->get_bounding_box())) {
+                std::cout << "collide ENEMY -- PLAYER_PROJECTILE" << "\n";
+            }
+        }
+    }
 }
 
 bool EntityManager::bounding_box_collide(std::shared_ptr<BoundingBox> first_box, std::shared_ptr<BoundingBox> second_box) {
@@ -91,9 +115,6 @@ void EntityManager::handle_command(int command){
 }
 
 void EntityManager::create_player(int x_position, int y_position) {
-    // TODO instead of sendind x and y for a lot of funcitons
-    //      create without sending x and y and update the last element
-    //      used on the push_back
     entity_factory->populate_player(player_list);
     player_list.back()->init_position(x_position, y_position);
 }
@@ -104,7 +125,6 @@ void EntityManager::create_enemy(int entity_race, int x_position, int y_position
 }
 
 void EntityManager::create_projectile(int entity_race, int x_position, int y_position) {
-    std::cout << "creating a projectile" << "\n";
     entity_factory->populate_projectile(projectile_list, entity_race);
     projectile_list.back()->init_position(x_position, y_position);
 }

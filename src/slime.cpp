@@ -11,6 +11,9 @@ Slime::Slime(std::shared_ptr<EntityFlyweight> entity_flyweight) {
     
     sprite = *entity_flyweight->get_image(SLIME_IMAGE);
 
+    entity_class = ENEMY;
+    entity_race = SLIME;
+
 }
 
 Slime::~Slime() {

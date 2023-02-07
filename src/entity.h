@@ -19,9 +19,8 @@ const std::vector<int> COMMAND_KEYS = {
     ALLEGRO_KEY_P
 };
 
-// TODO is this first enum still used?
 enum ENTITY_CLASS {PLAYER, ENEMY, PLAYER_PROJECTILE, ENEMY_PROJECTILE, PLATFORM};
-enum ENTITY_RACE {SLIME, DRAGON, FIRE_BALL};
+enum ENTITY_RACE {WARRIOR, SLIME, DRAGON, FIRE_BALL};
 
 // TODO: turn entity into a interface
 class Entity {
@@ -37,6 +36,7 @@ class Entity {
         void set_projectile_to_create(int projectile_to_create);
         float get_x();
         float get_y();
+        int get_entity_class();
         std::shared_ptr<BoundingBox> get_bounding_box();
 
     protected:
@@ -45,6 +45,8 @@ class Entity {
         std::unique_ptr<Coordinates> acceleration;
 
         int projectile_to_create;
+        int entity_class;
+        int entity_race;
 
         ALLEGRO_BITMAP* sprite;
         std::shared_ptr<BoundingBox> bounding_box;
