@@ -26,3 +26,10 @@ void BoundingBox::draw() {
     ALLEGRO_COLOR color = al_map_rgba(255,255,255,255);
     al_draw_rectangle(x, y, x + width, y + height, color, 3.0);
 }
+
+void BoundingBox::set_x(int x) {
+    this->x = x;
+}
+void BoundingBox::set_y(int y) {
+    this->y = y;
+}

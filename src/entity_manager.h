@@ -16,9 +16,9 @@ class EntityManager {
         ~EntityManager();
         void update_entities();
         void handle_command(int command);
-        void create_player();
-        void create_enemy(int entity_race);
-        void create_projectile(int entity_race);
+        void create_player(int x_position, int y_position);
+        void create_enemy(int entity_race, int x_position, int y_position);
+        void create_projectile(int entity_race, int x_position, int y_position);
     private:
         std::list<std::shared_ptr<Player>> player_list;
         std::list<std::shared_ptr<Projectile>> projectile_list;

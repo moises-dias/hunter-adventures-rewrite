@@ -11,7 +11,6 @@ Slime::Slime(std::shared_ptr<EntityFlyweight> entity_flyweight) {
     
     sprite = *entity_flyweight->get_image(SLIME_IMAGE);
 
-    init_position();
 }
 
 Slime::~Slime() {

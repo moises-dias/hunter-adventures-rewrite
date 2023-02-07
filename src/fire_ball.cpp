@@ -11,7 +11,6 @@ FireBall::FireBall(std::shared_ptr<EntityFlyweight> entity_flyweight) {
     
     sprite = *entity_flyweight->get_image(FIRE_BALL_IMAGE);
 
-    init_position();
 }
 
 FireBall::~FireBall() {

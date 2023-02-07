@@ -35,6 +35,8 @@ class Entity {
         void init_position(float x_position, float y_position);
         int get_projectile_to_create();
         void set_projectile_to_create(int projectile_to_create);
+        float get_x();
+        float get_y();
 
     protected:
         std::unique_ptr<Coordinates> position;

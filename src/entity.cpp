@@ -7,6 +7,7 @@ Entity::Entity() {
     std::cout << "Entity()" << "\n";
 
     projectile_to_create = -1;
+    // TODO where to init bounding box values?
     bounding_box = std::make_unique<BoundingBox>(200, 200, 200, 200);
 }
 
@@ -31,6 +32,10 @@ void Entity::update_movement() {
 void Entity::update() {
     update_movement();
     draw_sprite();
+    // TODO set the initial values of bounding box with the initial value of the entity
+    // TODO create method for updating bounding box
+    bounding_box->set_x(position->get_x());
+    bounding_box->set_y(position->get_y());
     bounding_box->draw();
 }
 
@@ -52,4 +57,12 @@ void Entity::set_projectile_to_create(int projectile_to_create) {
 
 int Entity::get_projectile_to_create() {
     return projectile_to_create;
+}
+
+float Entity::get_x() {
+    return position->get_x();
+}
+
+float Entity::get_y() {
+    return position->get_y();
 }

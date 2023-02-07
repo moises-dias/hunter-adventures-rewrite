@@ -11,7 +11,6 @@ Dragon::Dragon(std::shared_ptr<EntityFlyweight> entity_flyweight) {
     
     sprite = *entity_flyweight->get_image(DRAGON_IMAGE);
 
-    init_position();
 }
 
 Dragon::~Dragon() {

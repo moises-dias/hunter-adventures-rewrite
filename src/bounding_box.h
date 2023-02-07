@@ -9,6 +9,8 @@ class BoundingBox {
         BoundingBox(int x, int y, int width, int height);
         ~BoundingBox();
         void draw();
+        void set_x(int x);
+        void set_y(int y);
 
     private:
         int x;
