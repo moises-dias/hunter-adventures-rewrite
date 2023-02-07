@@ -8,7 +8,7 @@ Entity::Entity() {
 
     projectile_to_create = -1;
     // TODO where to init bounding box values?
-    bounding_box = std::make_unique<BoundingBox>(200, 200, 200, 200);
+    bounding_box = std::make_shared<BoundingBox>(200, 200, 200, 200);
 }
 
 Entity::~Entity() {
@@ -46,6 +46,10 @@ void Entity::init_position() {
 }
 
 void Entity::init_position(float x_position, float y_position) {
+
+    bounding_box->set_x(x_position);
+    bounding_box->set_y(y_position);
+
     position = std::make_unique<Coordinates>(x_position, y_position);
     velocity = std::make_unique<Coordinates>(0, 0);
     acceleration = std::make_unique<Coordinates>(0, 0);
@@ -65,4 +69,8 @@ float Entity::get_x() {
 
 float Entity::get_y() {
     return position->get_y();
+}
+
+std::shared_ptr<BoundingBox> Entity::get_bounding_box() {
+    return this->bounding_box;
 }

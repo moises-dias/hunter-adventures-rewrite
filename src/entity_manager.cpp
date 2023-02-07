@@ -38,6 +38,48 @@ void EntityManager::update_entities(){
     }
 }
 
+void EntityManager::collide_entities(){
+    for(auto&& i_player : player_list) {
+        for(auto&& i_enemy : enemy_list) {
+            if (bounding_box_collide(i_player->get_bounding_box(), i_enemy->get_bounding_box())) {
+                std::cout << "collide" << "\n";
+            }
+        }
+    }   
+}
+
+bool EntityManager::bounding_box_collide(std::shared_ptr<BoundingBox> first_box, std::shared_ptr<BoundingBox> second_box) {
+    // TODO break into two functinos vertical and horizontal
+    std::shared_ptr<BoundingBox> left_box;
+    std::shared_ptr<BoundingBox> right_box;
+    std::shared_ptr<BoundingBox> upper_box;
+    std::shared_ptr<BoundingBox> lower_box;
+
+    if (first_box->get_x() < second_box->get_x()) {
+        left_box = first_box;
+        right_box = second_box;
+    }
+    else {
+        left_box = second_box;
+        right_box = first_box;
+    }
+
+    if (first_box->get_y() < second_box->get_y()) {
+        upper_box = first_box;
+        lower_box = second_box;
+    }
+    else {
+        upper_box = second_box;
+        lower_box = first_box;
+    }
+
+    bool collide_vertical = (right_box->get_x() + right_box->get_width() - left_box->get_x() < right_box->get_width() + left_box->get_width());
+
+    bool collide_horizontal = (lower_box->get_y() + lower_box->get_height() - upper_box->get_y() < lower_box->get_height() + upper_box->get_height());
+
+    return collide_vertical && collide_horizontal;
+}
+
 void EntityManager::handle_command(int command){
     for(auto&& i_player : player_list) {
         i_player->handle_command(command);

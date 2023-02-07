@@ -37,6 +37,7 @@ class Entity {
         void set_projectile_to_create(int projectile_to_create);
         float get_x();
         float get_y();
+        std::shared_ptr<BoundingBox> get_bounding_box();
 
     protected:
         std::unique_ptr<Coordinates> position;
@@ -46,7 +47,7 @@ class Entity {
         int projectile_to_create;
 
         ALLEGRO_BITMAP* sprite;
-        std::unique_ptr<BoundingBox> bounding_box;
+        std::shared_ptr<BoundingBox> bounding_box;
 };
 
 #endif

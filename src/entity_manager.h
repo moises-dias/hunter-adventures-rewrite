@@ -15,10 +15,12 @@ class EntityManager {
         EntityManager();
         ~EntityManager();
         void update_entities();
+        void collide_entities();
         void handle_command(int command);
         void create_player(int x_position, int y_position);
         void create_enemy(int entity_race, int x_position, int y_position);
         void create_projectile(int entity_race, int x_position, int y_position);
+        bool bounding_box_collide(std::shared_ptr<BoundingBox> first_box, std::shared_ptr<BoundingBox> second_box);
     private:
         std::list<std::shared_ptr<Player>> player_list;
         std::list<std::shared_ptr<Projectile>> projectile_list;

@@ -33,3 +33,16 @@ void BoundingBox::set_x(int x) {
 void BoundingBox::set_y(int y) {
     this->y = y;
 }
+
+int BoundingBox::get_x(){
+    return x;
+}
+int BoundingBox::get_y(){
+    return y;
+}
+int BoundingBox::get_width(){
+    return width;
+}
+int BoundingBox::get_height(){
+    return height;
+}

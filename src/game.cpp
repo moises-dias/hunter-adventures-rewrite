@@ -23,10 +23,10 @@ Game::Game(){
 
     // TODO: create game state classes, creation of player and enemies will be on gameplay state
 
-    entity_manager->create_player(300, 300);
-    entity_manager->create_enemy(SLIME, 100, 100);
-    entity_manager->create_enemy(DRAGON, 600, 600);
-    entity_manager->create_enemy(DRAGON, 100, 600);
+    entity_manager->create_player(0, 0);
+    entity_manager->create_enemy(SLIME, 400, 0);
+    entity_manager->create_enemy(DRAGON, 0, 600);
+    entity_manager->create_enemy(DRAGON, 400, 600);
 
     main_game_loop();
 
@@ -98,15 +98,16 @@ void Game::update_screen() {
     al_clear_to_color(al_map_rgb(255,255,255));
     // TODO: draw the background on what class? is this an entity?
     al_draw_bitmap(bg, 0, 0, 0);
-    // TODO fix entities being updated on the update_screen method.
-    entity_manager->update_entities();
-    al_flip_display();
 }
 
 void Game::main_game_loop() {
 
     while(!shutdown_game){
         update_screen();
+        // TODO send map as argument to collide
+        entity_manager->collide_entities();
+        entity_manager->update_entities();
+        al_flip_display();
         handle_event();
     }
 }
