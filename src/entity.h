@@ -8,6 +8,7 @@
 
 #include "entity_flyweight.h"
 #include "coordinates.h"
+#include "bounding_box.h"
 
 // TODO: where to store this vector? not in entity, enemies does not need to know it
 const std::vector<int> COMMAND_KEYS = {
@@ -43,6 +44,7 @@ class Entity {
         int projectile_to_create;
 
         ALLEGRO_BITMAP* sprite;
+        std::unique_ptr<BoundingBox> bounding_box;
 };
 
 #endif

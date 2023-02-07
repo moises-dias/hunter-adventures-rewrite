@@ -45,6 +45,7 @@ void Game::init_allegro_dependencies() {
     al_init();
     al_init_font_addon();
     al_init_ttf_addon();
+    al_init_primitives_addon();
     al_init_image_addon();
     al_install_keyboard();
 }
@@ -97,6 +98,7 @@ void Game::update_screen() {
     al_clear_to_color(al_map_rgb(255,255,255));
     // TODO: draw the background on what class? is this an entity?
     al_draw_bitmap(bg, 0, 0, 0);
+    // TODO fix entities being updated on the update_screen method.
     entity_manager->update_entities();
     al_flip_display();
 }

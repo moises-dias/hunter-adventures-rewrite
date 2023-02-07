@@ -7,6 +7,7 @@ Entity::Entity() {
     std::cout << "Entity()" << "\n";
 
     projectile_to_create = -1;
+    bounding_box = std::make_unique<BoundingBox>(200, 200, 200, 200);
 }
 
 Entity::~Entity() {
@@ -30,6 +31,7 @@ void Entity::update_movement() {
 void Entity::update() {
     update_movement();
     draw_sprite();
+    bounding_box->draw();
 }
 
 void Entity::init_position() {
